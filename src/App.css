@@ -1,10 +1,23 @@
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.App-gehts {
+
+}
+
+.App-artig {
+  border-bottom: 1px dashed #61dafb;
+  margin-bottom: 20px;
+}
+
+.App-artig:last-child {
+  border: none;
+}
+
+a {
+  color: #61dafb;
 }
 
 @media (prefers-reduced-motion: no-preference) {
