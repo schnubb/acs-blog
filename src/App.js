@@ -38,7 +38,6 @@ function App() {
   const [id, setId] = useState("");
 
   useEffect(() => {
-    console.log(id);
     if (id === "") {
       fetch(graphcms.api, {
         method: "post",
@@ -72,7 +71,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {post === null? <img src={logo} className="App-logo" alt="logo" /> : <img src={post.coverImage.url} alt="" />}
+        {post === null? <img src={logo} className="App-logo" alt="logo" /> : <img src={post.coverImage.url} alt="" onClick={() => { setPost(null) }} />}
 
         <p>
           <a className="App-link" href="https://github.com/schnubb/acs-blog">

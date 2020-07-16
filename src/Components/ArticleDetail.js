@@ -1,9 +1,6 @@
 import React from "react";
 
 export default function ArticleDetail({ article, setPost }) {
-
-
-
   return (
     <article>
       <header>
