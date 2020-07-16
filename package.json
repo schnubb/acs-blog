@@ -2,6 +2,9 @@
   "name": "acs-blog",
   "version": "0.1.0",
   "private": true,
+  "graphcms": {
+    "api": "https://api-eu-central-1.graphcms.com/v2/ckcf19erj0b5c01xqgbum64s0/master"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
