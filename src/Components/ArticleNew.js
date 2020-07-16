@@ -34,6 +34,25 @@ export default function ArticleForm({setId}) {
 
   const editor = useMemo(() => withReact(createEditor()), [])
 
+  const fetchNewPost = id => {
+    fetch(graphcms.api, {
+      method: "post",
+      body: JSON.stringify( {
+        query: publishPost,
+        variables: {
+          id: id
+        }
+      })
+    })
+      .then(res=>res.json())
+      .then(({ data }) => {
+        setId(data.publishPost.id);
+      })
+      .catch(err => {
+        if (err) throw new Error(err);
+      })
+  }
+
   const submitPost = () => {
     fetch(graphcms.api, {
       method: "post",
@@ -49,19 +68,7 @@ export default function ArticleForm({setId}) {
       .then(res => res.json())
       .then(({ data }) => {
         const id = data.createPost.id;
-        fetch(graphcms.api, {
-          method: "post",
-          body: JSON.stringify( {
-            query: publishPost,
-            variables: {
-              id: id
-            }
-          })
-        })
-          .then(res=>res.json())
-          .then(({ data }) => {
-            setId(data.publishPost.id);
-          })
+        fetchNewPost(id);
       }).catch(err => {
         if (err) throw new Error(err);
     })
