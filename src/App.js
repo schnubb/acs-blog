@@ -4,6 +4,7 @@ import './App.css';
 import { graphcms } from "../package.json";
 import ArticleList  from "./Components/ArticleList";
 import ArticleDetail from "./Components/ArticleDetail";
+import ArticleNew from "./Components/ArticleNew";
 
 const getPosts = `
 query {
@@ -68,33 +69,47 @@ function App() {
     }
   }, [id]);
 
+  const { coverImage } = post || {};
+
   return (
     <div className="App">
       <header className="App-header">
-        {post === null? <img src={logo} className="App-logo" alt="logo" /> : <img src={post.coverImage.url} alt="" onClick={() => { setPost(null) }} />}
-
+        {coverImage ? <img src={post.coverImage.url} alt="" onClick={() => { setPost(null)}} /> : <img src={logo} className="App-logo" alt="logo" /> }
         <p>
           <a className="App-link" href="https://github.com/schnubb/acs-blog">
             https://github.com/schnubb/acs-blog
           </a>
         </p>
+      </header>
 
-        <main>
+      {post === "new" ? (
+        <ArticleNew setId={setId} />
+      ) : (
+        <main className="App-header">
           <section className="App-gehts">
             {post === null ? <ArticleList postList={postList} setId={setId} /> : <ArticleDetail article={post} setPost={setPost}/>}
           </section>
         </main>
-        <aside>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </aside>
-      </header>
+      )}
+
+      <aside className="App-header">
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </aside>
+
+      <footer className="App-header">
+        <a onClick={() => {
+          setPost("new");
+        }}>
+          New Post
+        </a>
+      </footer>
     </div>
   );
 }
